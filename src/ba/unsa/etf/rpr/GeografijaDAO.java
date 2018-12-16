@@ -7,22 +7,32 @@ public class GeografijaDAO {
     }
 
     public static GeografijaDAO getInstance() {
+        GeografijaDAO instance=null;
+        if (instance == null) initialize();
+        return instance;
+    }
 
+    private static void initialize() {
     }
 
     public ArrayList<Grad> gradovi() {
+        ArrayList<Grad> grad=new ArrayList<>();
+        return grad;
     }
 
     public Grad glavniGrad(String bosna_i_hercegovina) {
+        Grad glavni=null;
+        return glavni;
     }
 
-    public Grad glavniGrad(String austrija) {
-    }
+
 
     public void obrisiDrzavu(String kina) {
     }
 
     public Drzava nadjiDrzavu(String francuska) {
+        Drzava d=null;
+        return d;
     }
 
     public void dodajGrad(Grad grad) {
