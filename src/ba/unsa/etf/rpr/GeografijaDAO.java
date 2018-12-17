@@ -66,12 +66,17 @@ public class GeografijaDAO {
 
 
 
-    public void obrisiDrzavu(String kina) {
+    public void obrisiDrzavu(String drzava) {
     }
 
-    public Drzava nadjiDrzavu(String francuska) {
-        Drzava d=null;
-        return d;
+    public Drzava nadjiDrzavu(String drzava) {
+        stmt2=conn.prepareStatement("SELECT id, naziv FROM main.drzava WHERE main.grad=?");
+        ResultSet rs = stmt2.executeQuery();
+        while (rs.next()) {
+            // System.out.println()
+            Drzava d=new Drzava(rs.getInt(1), rs.getString(2), rs.getInt(3));
+            if(d.getNaziv().equals(drzava))return d;
+        }
     }
 
     public void dodajGrad(Grad grad) {
@@ -80,7 +85,7 @@ public class GeografijaDAO {
 
 
     public void dodajDrzavu(Drzava drzava) {
-        drzave.add(drzava)
+        drzave.add(drzava);
     }
 
     public void izmijeniGrad(Grad grad) {
