@@ -60,7 +60,8 @@ public class GeografijaDAO {
     }
 
     public Grad glavniGrad(String glavniGrad) {
-
+        Grad grad=null;
+        return grad;
     }
 
 
@@ -74,11 +75,18 @@ public class GeografijaDAO {
     }
 
     public void dodajGrad(Grad grad) {
+        gradovi.add(grad);
     }
 
-    public void dodajDrzavu(Drzava bih) {
+
+    public void dodajDrzavu(Drzava drzava) {
+        drzave.add(drzava)
     }
 
-    public void izmijeniGrad(Grad bech) {
+    public void izmijeniGrad(Grad grad) {
+        stmt1 = conn.prepareStatement("UPDATE main.drzava SET main.drzava.naziv=?, main.drzava.glavni_grad=?");
+        stmt1.setInt(1, grad.getId());
+        stmt1.setString(2, grad.getNaziv());
+        stmt1.setInt(3, grad.getBrojStanovnika());
     }
 }
