@@ -25,13 +25,13 @@ public class Main {
         String url = "jdbc:sqlite:C://sqlite/db/baza.db";
 
         // SQL statement for creating a new table
-        String grad = "CREATE TABLE IF NOT EXISTS warehouses (\n"
+        String grad = "CREATE TABLE IF NOT EXISTS grad (\n"
                 + "	id int PRIMARY KEY,\n"
                 + "	naziv text NOT NULL,\n"
                 + "	CONSTRAINT grad_drzava_glavni_grad_fk FOREIGN KEY (id) REFERENCES drzava (glavni_grad)\n"
                 + ");";
 
-        String drzava= "CREATE TABLE IF NOT EXISTS warehouses (\n"
+        String drzava= "CREATE TABLE IF NOT EXISTS drzava (\n"
                 + "	id int PRIMARY KEY,\n"
                 + "	naziv text NOT NULL,\n"
                 + "	CONSTRAINT drzava_grad_broj_stanovnika_fk FOREIGN KEY (id) REFERENCES grad (broj_stanovnika)\n"
