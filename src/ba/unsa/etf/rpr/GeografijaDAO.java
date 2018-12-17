@@ -67,15 +67,22 @@ public class GeografijaDAO {
 
 
     public void obrisiDrzavu(String drzava) {
+        for(int i=0;i<drzave.size();i++){
+            if(drzave.get(i).getNaziv().equals(drzava))drzave.remove(i);
+        }
     }
 
     public Drzava nadjiDrzavu(String drzava) {
-        stmt2=conn.prepareStatement("SELECT id, naziv FROM main.drzava WHERE main.grad=?");
+        Drzava d=null;
+    /*    stmt2=conn.prepareStatement("SELECT id, naziv FROM main.drzava WHERE main.grad=?");
         ResultSet rs = stmt2.executeQuery();
         while (rs.next()) {
             // System.out.println()
-            Drzava d=new Drzava(rs.getInt(1), rs.getString(2), rs.getInt(3));
+            d=new Drzava(rs.getInt(1), rs.getString(2), rs.getInt(3));
             if(d.getNaziv().equals(drzava))return d;
+        }*/
+        for(int i=0;i<drzave.size();i++){
+            if(drzave.get(i).getNaziv().equals(drzava))return d;
         }
     }
 
