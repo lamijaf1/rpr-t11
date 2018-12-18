@@ -47,15 +47,7 @@ public class Main {
             System.out.println(e.getMessage());
         }
     }
-
-    public static void main(String[] args) {
-        createNewDatabase("baza");
-        createNewTable();
-        System.out.println("Gradovi su:\n" + ispisiGradove());
-        glavniGrad();
-    }
-
-    private static void glavniGrad() {
+    public  static void glavniGrad() {
         /*void glavniGrad() - omogućuje korisniku da putem tastature unese naziv države,
         a zatim na ekran ispisuje poruku u obliku "Glavni grad države Država je Grad" ili "Nepostojeća država"
          */
@@ -78,5 +70,14 @@ public class Main {
         }
         return s;
     }
+
+
+    public static void main(String[] args) {
+        createNewDatabase("baza");
+        createNewTable();
+        System.out.println("Gradovi su:\n" + ispisiGradove());
+        glavniGrad();
+    }
+
 
 }
