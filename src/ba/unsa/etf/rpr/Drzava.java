@@ -8,11 +8,11 @@ public class Drzava {
     private SimpleStringProperty naziv = new SimpleStringProperty("");
     private Grad glavni_grad;
 
-
-    public Drzava(int id, String naziv, Grad glavni_grad) {
-        this.setId(new SimpleIntegerProperty(id));
-        this.setNaziv(new SimpleStringProperty(naziv));
-        setGlavniGrad(glavni_grad);
+    public Drzava() {}
+    public Drzava(int id, String naziv, String glavni_grad) {
+        this.id=new SimpleIntegerProperty(id);
+        this.naziv=new SimpleStringProperty(naziv);
+        this.glavni_grad.setNaziv(glavni_grad);
     }
 
 
