@@ -4,6 +4,8 @@ import javafx.beans.property.SimpleObjectProperty;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class GeografijaDAO {
     ArrayList<Grad> gradovi=new ArrayList<>();
@@ -53,15 +55,26 @@ public class GeografijaDAO {
     private static void initialize() {
         instance = new GeografijaDAO();
     }
+    //ArrayList<Grad> gradovi() - vraća spisak gradova sortiranih po broju stanovnika u opadajućem redoslijedu
+
 
     public ArrayList<Grad> gradovi() {
-        ArrayList<Grad> grad=new ArrayList<>();
-        return grad;
+        Collections.sort(gradovi, new Comparator<Grad>() {
+            @Override
+            public int compare(Grad z1, Grad z2) {
+                if (z1.getBrojStanovnika() > z2.getBrojStanovnika()) return -1;
+                if (z1.getBrojStanovnika() < z2.getBrojStanovnika()) return 1;
+                return 0;
+            }
+        });
+
     }
 
     public Grad glavniGrad(String glavniGrad) {
-        Grad grad=null;
-        return grad;
+        for(int i=0;i<drzave.size();i++){
+            if(drzave.get(i).getNaziv().equals(glavniGrad))return drzave.get(i).getGlavni_grad();
+        }
+        return null;
     }
 
 

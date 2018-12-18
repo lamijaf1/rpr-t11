@@ -56,10 +56,24 @@ public class Main {
     }
 
     private static void glavniGrad() {
+        /*void glavniGrad() - omogućuje korisniku da putem tastature unese naziv države,
+        a zatim na ekran ispisuje poruku u obliku "Glavni grad države Država je Grad" ili "Nepostojeća država"
+         */
+        System.out.println("Unesite naziv države: ");
+        Scanner ulaz = new Scanner(System.in);
+        String drzava = ulaz.nextLine();
+        Grad
+
     }
 
     public static String ispisiGradove() {
+        ArrayList<Grad> gradovi = GeografijaDAO.getInstance().gradovi();
         String s="";
+        for(int i = 0 ; i < gradovi.size(); i++){
+            s+=(gradovi.get(i).getDrzava().getGlavni_grad()+" (");
+            s+=(gradovi.get(i).getDrzava()+") - ");
+            s+=(gradovi.get(i).getBrojStanovnika()+"\n");
+        }
         return s;
     }
 
