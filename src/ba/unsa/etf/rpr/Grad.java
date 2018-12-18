@@ -10,11 +10,11 @@ public class Grad {
     private Drzava drzava;
 
     public Grad(){}
-    public Grad(int id, String naziv, int broj_stanovnika, String drzava) {
+    public Grad(int id, String naziv, int broj_stanovnika, int drzava) {
         this.id=new SimpleIntegerProperty(id);
         this.naziv=new SimpleStringProperty(naziv);
         this.broj_stanovnika=new SimpleIntegerProperty(broj_stanovnika);
-        this.drzava.setNaziv(drzava);
+       // this.drzava.setNaziv(drzava);
     }
 
 

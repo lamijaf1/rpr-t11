@@ -9,10 +9,10 @@ public class Drzava {
     private Grad glavni_grad;
 
     public Drzava() {}
-    public Drzava(int id, String naziv, String glavni_grad) {
+    public Drzava(int id, String naziv, int glavni_grad) {
         this.id=new SimpleIntegerProperty(id);
         this.naziv=new SimpleStringProperty(naziv);
-        this.glavni_grad.setNaziv(glavni_grad);
+       // this.glavni_grad.setNaziv(glavni_grad);
     }
 
 

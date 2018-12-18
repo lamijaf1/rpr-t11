@@ -15,28 +15,28 @@ public class GeografijaDAO {
     private static final String INSERT_SQL1 = "INSERT INTO Remuneraciones(id, naziv, , glavni_grad) VALUES(?, ?, ?)";
     private static final String INSERT_SQL2 = "INSERT INTO Remuneraciones(id, naziv, , broj_stanovnika, drzava) VALUES(?, ?, ?,?)";
     private static Connection conn;  /* i ostalo što treba za bazu */
-    public String url = "jdbc:sqlite:resources/baza.db";
+    public String url = "jdbc:sqlite/baza.db";
     //com.mysql.cj.jdbc.Driver
-    private PreparedStatement stmt1, stmt2;
+    private static PreparedStatement stmt1, stmt2;
 
 
     public GeografijaDAO() {
         try {
             //Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:sqlite:resources/baza.db");
-            stmt1 = conn.prepareStatement("SELECT id, naziv,  broj_stanovnika FROM main.grad WHERE main.drzava.naziv= ?");
+            conn = DriverManager.getConnection("jdbc:sqlite:baza.db");
+            stmt1 = conn.prepareStatement("SELECT id,naziv,broj_stanovnika FROM grad WHERE drzava=?");
             ResultSet rs = stmt1.executeQuery();
             while (rs.next()) {
                 // System.out.println()
-                Grad k = new Grad(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4));
+                Grad k = new Grad(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4));
                 gradovi.add(k);
             }
             // ne znam postaviti strani kljuc za ovaj slucaj pa ne mogu odabrati dobro
-            stmt2 = conn.prepareStatement("SELECT id, naziv FROM main.drzava WHERE main.grad=?");
+            stmt2 = conn.prepareStatement("SELECT  naziv FROM drzava WHERE glavni_grad=?");
             ResultSet rs1 = stmt2.executeQuery();
             while (rs1.next()) {
                 // System.out.println()
-                Drzava d = new Drzava(rs1.getInt(1), rs1.getString(2), rs1.getString(3));
+                Drzava d = new Drzava(rs1.getInt(1), rs1.getString(2), rs1.getInt(3));
                 drzave.add(d);
             }
 
@@ -132,7 +132,7 @@ public class GeografijaDAO {
     public static void createNewDatabase(String fileName) {
 
         // url = "jdbc:sqlite:C:/sqlite/db/" + fileName;
-        String url = "jdbc:sqlite:resources/baza.db";
+        String url = "jdbc:sqlite:baza.db";
         try (Connection conn = DriverManager.getConnection(url)) {
             if (conn != null) {
                 DatabaseMetaData meta = conn.getMetaData();
@@ -152,15 +152,14 @@ public class GeografijaDAO {
         String grad = "CREATE TABLE IF NOT EXISTS grad (\n"
                 + "	id int PRIMARY KEY,\n"
                 + "	naziv text NOT NULL,\n"
-                + "	CONSTRAINT grad_drzava_glavni_grad_fk FOREIGN KEY (id) REFERENCES drzava (glavni_grad)\n"
+                + "	drzava int \n"
                 + ");";
-
         String drzava= "CREATE TABLE IF NOT EXISTS drzava (\n"
                 + "	id int PRIMARY KEY,\n"
                 + "	naziv text NOT NULL,\n"
-                + "	CONSTRAINT drzava_grad_broj_stanovnika_fk FOREIGN KEY (id) REFERENCES grad (broj_stanovnika)\n"
+                + "	CONSTRAINT drzava_grad_id_fk FOREIGN KEY (glavni_grad) REFERENCES grad (id)\n"
                 + ");";
-        String url = "jdbc:sqlite:resources/baza.db";
+        String url = "jdbc:sqlite:baza.db";
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement();
              Statement stmt1 = conn.createStatement()) {
@@ -174,7 +173,7 @@ public class GeografijaDAO {
     public static void connect(){
         try{
             //String route= "C:\\Lamija baza.db";
-            String url = "jdbc:sqlite:resources/baza.db";
+            String url = "jdbc:sqlite:baza.db";
             conn = DriverManager.getConnection(url);
             if (conn!=null)
                 System.out.println("Connected to db.");
@@ -183,35 +182,24 @@ public class GeografijaDAO {
             System.err.println("Couldn't connect."+ex.getMessage());
         }
     }
-    public  static void insertToDatabase(){
+    public static  void insertToDatabase(){
         connect();
-        int numRowsInserted = 0;
-        PreparedStatement ps = null;
         try {
-            ps = conn.prepareStatement(INSERT_SQL2);
-            ps.setString(2,"London");
-            ps.setString(2,"Pariz");
-            ps.setString(2,"Beč");
-            ps.setString(2,"Manchester");
-            ps.setString(2,"Graz");
-            ps.setInt(3,8825000);
-            ps.setInt(3,2206488);
-            ps.setInt(3,1899055);
-            ps.setInt(3,545500);
-            ps.setInt(3,280200);
-            ps = conn.prepareStatement(INSERT_SQL1);
-            ps.setString(2,"Velika Britanija");
-            ps.setString(2,"Francuska");
-            ps.setString(2,"Austrija");
-            ps.setString(2,"Velika Britanija");
-            ps.setString(2,"Austrija");
-            numRowsInserted = ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            close(ps);
+            stmt1 = conn.prepareStatement("INSERT INTO drzava(id,naziv,glavni_grad) VALUES(1,'Velika Britanija',1)");
+            stmt1.execute();
+            stmt1 = conn.prepareStatement("INSERT INTO drzava(naziv,glavni_grad) VALUES(2,'Francuska',2)");
+            stmt1.execute();
+            stmt1 = conn.prepareStatement("INSERT INTO drzava(naziv,glavni_grad) VALUES(3,'Austrija',3)");
+            stmt1.execute();
+            stmt1 = conn.prepareStatement("INSERT INTO drzava(naziv,glavni_grad) VALUES(4,'Velika Britanija',4)");
+            stmt1.execute();
+            stmt1 = conn.prepareStatement("INSERT INTO drzava(naziv,glavni_grad) VALUES(5,'Austrija',5)");
+            stmt1.execute();
+            stmt1.close();
+
+        } catch (Exception e) {
+            e.getMessage();
         }
-        //return numRowsInserted;
     }
     public static void close(Statement statement) {
         try {
