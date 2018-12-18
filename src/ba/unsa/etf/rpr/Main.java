@@ -73,8 +73,8 @@ public class Main {
 
 
     public static void main(String[] args) {
-        createNewDatabase("baza");
-        createNewTable();
+        //createNewDatabase("baza");
+      //  createNewTable();
         System.out.println("Gradovi su:\n" + ispisiGradove());
         glavniGrad();
     }

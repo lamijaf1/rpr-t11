@@ -15,7 +15,7 @@ public class GeografijaDAO {
     private static final String INSERT_SQL1 = "INSERT INTO Remuneraciones(id, naziv, , glavni_grad) VALUES(?, ?, ?)";
     private static final String INSERT_SQL2 = "INSERT INTO Remuneraciones(id, naziv, , broj_stanovnika, drzava) VALUES(?, ?, ?,?)";
     private static Connection conn;  /* i ostalo što treba za bazu */
-    String url = "jdbc:sqlite:resources/baza.db";
+    public String url = "jdbc:sqlite:resources/baza.db";
     //com.mysql.cj.jdbc.Driver
     private PreparedStatement stmt1, stmt2;
 
