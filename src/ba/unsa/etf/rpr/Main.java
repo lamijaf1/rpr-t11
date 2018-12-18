@@ -62,7 +62,9 @@ public class Main {
         System.out.println("Unesite naziv države: ");
         Scanner ulaz = new Scanner(System.in);
         String drzava = ulaz.nextLine();
-        Grad
+        Grad noviGrad=GeografijaDAO.getInstance().glavniGrad(drzava);
+        if(!noviGrad) System.out.println("Glavni grad države"+drzava+"je "+ noviGrad.getNaziv());
+        else System.out.println("Nepostojeća država");
 
     }
 
