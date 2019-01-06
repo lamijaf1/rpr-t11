@@ -12,7 +12,7 @@ import java.util.Scanner;
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class Main extends Application {
-   /* public  String ispisiGradove(){
+    public  String ispisiGradove(){
         ArrayList<Grad> gradovi = GeografijaDAO.getInstance().gradovi();
         String s="";
         for(Grad grad: gradovi){
@@ -28,7 +28,7 @@ public class Main extends Application {
         Grad glavniGrad = dao.glavniGrad(naziv);
         if(glavniGrad == null) System.out.println("Nepostojeca drzava");
         else System.out.println("Glavni grad drzave " + naziv + " je " + glavniGrad.getNaziv());
-    }*/
+    }
     @Override
     public void start(Stage primaryStage) throws Exception{
         GeografijaDAO model = GeografijaDAO.getInstance();
