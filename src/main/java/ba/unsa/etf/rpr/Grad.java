@@ -1,6 +1,6 @@
 package ba.unsa.etf.rpr;
 
-public class Grad {
+public class Grad{
     private int id;
     private String naziv;
     private int brojStanovnika;

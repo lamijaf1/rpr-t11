@@ -1,8 +1,11 @@
 package ba.unsa.etf.rpr;
 
+
+
+
+
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
-
 
 import java.util.ResourceBundle;
 
@@ -14,10 +17,10 @@ public class Controller {
     public Button obrisiDrzavu;
     public Button ispisGradova,pronadjiDrzavu;
     public Menu file,help,view,Jezik;
-    public  MenuItem bosanski,njemacki,engleski,francuski,close,saveAs;
+    public MenuItem bosanski,njemacki,engleski,francuski,close,saveAs;
     public Main Main;
     public Label statusMsg,drzava;
-
+    public Controller(){}
 
     public void obrisiDrzavu(ActionEvent actionEvent) {
         Grad glavniGrad = GeografijaDAO.getInstance().glavniGrad(drzavaNaziv.getText());
@@ -27,8 +30,8 @@ public class Controller {
     }
 
     public void ispisiGradove(ActionEvent actionEvent) {
-        String s="Gradovi: "+Main.ispisiGradove();
-        System.out.println(s);
+       // String s="Gradovi: "+Main.ispisiGradove();
+      //  System.out.println(s);
         statusMsg.setText("Ispisujem gradove.");
 
     }
@@ -64,8 +67,9 @@ public class Controller {
                 property="Translation_de";
                 break;
             case "engleski":
-                property="Translation_en_US";
+                property="Translation_en_Us";
                 break;
+
         }
         file.setText(ResourceBundle.getBundle(property).getString("File"));
         help.setText(ResourceBundle.getBundle(property).getString("Help"));

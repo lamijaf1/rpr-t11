@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr;
 //POSTOJI PROBLEM KOD KREIRANJA BAZE
-import javafx.beans.property.SimpleObjectProperty;
+
+//import javafx.beans.property.SimpleObjectProperty;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -8,8 +9,8 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class GeografijaDAO {
-    ArrayList<Grad> gradovi = new ArrayList<>();
-    ArrayList<Drzava> drzave = new ArrayList<>();
+    ArrayList<Grad> gradovi = new ArrayList<Grad>();
+    ArrayList<Drzava> drzave = new ArrayList<Drzava>();
     private static GeografijaDAO instance = null;
 
     public static Connection getConn() {
@@ -34,7 +35,7 @@ public class GeografijaDAO {
         instance = new GeografijaDAO();
     }
 
-    private GeografijaDAO() {
+    public GeografijaDAO() {
         try {
             connect();
             createNewTable();
@@ -70,9 +71,11 @@ public class GeografijaDAO {
                 + "    CONSTRAINT drzava_grad_id_fk FOREIGN KEY (glavni_grad) REFERENCES grad (id)\n" +
                 ");";
         String url = "jdbc:sqlite:resources/baza.db";
-        try (Connection conn = DriverManager.getConnection(url);
-             Statement stmt = conn.createStatement();
-             Statement stmt1 = conn.createStatement()) {
+
+        try{
+            Connection conn = DriverManager.getConnection(url);
+            Statement stmt = conn.createStatement();
+            Statement stmt1 = conn.createStatement();
             stmt.execute(grad);
             stmt1.execute(drzava);
         } catch (SQLException e) {
@@ -212,19 +215,7 @@ public class GeografijaDAO {
         }
     }
 
-    public static void createNewDatabase(String fileName) {
-        String url = "jdbc:sqlite:resources/baza.db";
-        try (Connection conn = DriverManager.getConnection(url)) {
-            if (conn != null) {
-                DatabaseMetaData meta = conn.getMetaData();
-                System.out.println("The driver name is " + meta.getDriverName());
-                System.out.println("A new database has been created.");
-            }
 
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
 
     public static  void insertToDatabase1(){
         connect();

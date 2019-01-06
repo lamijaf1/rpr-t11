@@ -1,6 +1,5 @@
 package ba.unsa.etf.rpr;
 
-import java.awt.*;
 
 public class Drzava {
     private int id ;
