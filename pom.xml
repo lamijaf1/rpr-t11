@@ -16,7 +16,20 @@
         <maven.compiler.target>10</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
+    <!-- Opisne informacije o projektu -->
+    <description>
+        Ovo je projekat koji testira korištenje Mavena za upravljanje java projektom
+        Kloniran je tutorijal 10 i iskorišten za kreiranje mavena u tutotijalu 11
+    </description>
+    <organization>
+        <name>
+            Univerzitet u Sarajevu,
+            Elektrotehnički fakultet Sarajevo,
+            Razvoj Programskih Rješenja
+            Tutorijal 11
+        </name>
+        <url>http://www.etf.unsa.ba</url>
+    </organization>
 
     <dependencies>
         <dependency>
