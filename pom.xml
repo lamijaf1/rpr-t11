@@ -3,13 +3,20 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>ba.unsa.etf.rpr</groupId>
-    <artifactId>rpr-t11</artifactId>
+
+    <groupId>ba.unsa.etf</groupId>
+    <artifactId>rpr.rpr-t11</artifactId>
     <version>1.0-SNAPSHOT</version>
 
 
     <name>rpr-t11</name>
     <url>https://github.com/lamijaf1/rpr-t11</url>
+    <properties>
+        <maven.compiler.source>10</maven.compiler.source>
+        <maven.compiler.target>10</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
 
     <dependencies>
         <dependency>
@@ -90,5 +97,5 @@
         </plugins>
     </build>
 
-    
+
 </project>
