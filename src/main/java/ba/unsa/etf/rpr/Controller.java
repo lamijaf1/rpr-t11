@@ -30,8 +30,8 @@ public class Controller {
     }
 
     public void ispisiGradove(ActionEvent actionEvent) {
-       // String s="Gradovi: "+Main.ispisiGradove();
-      //  System.out.println(s);
+       String s="Gradovi: "+Main.ispisiGradove();
+       System.out.println(s);
         statusMsg.setText("Ispisujem gradove.");
 
     }
